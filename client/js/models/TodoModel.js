@@ -13,6 +13,7 @@ const TodoCollection = {
       "done": false
     }
   ],
+
   // Rails で言うところの Model.all
   async read() {
     const resp = await fetch('/todos').then(res => res.json());
@@ -20,6 +21,19 @@ const TodoCollection = {
       return new TodoModel({ ...todo });
     })
     return this.todos;
+  },
+
+  async create(name) {
+    const resp = await fetch('/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify({ name })
+    }).then(res => res.json());
+    const newTodo = new TodoModel({ ...resp });
+    this.todos.push(newTodo);
+    return newTodo;
   }
 }
 

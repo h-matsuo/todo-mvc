@@ -26,16 +26,6 @@
           "id": 2,
           "name": "hogehogehoge",
           "done": false
-        },
-        {
-          "id": 3,
-          "name": "buy peanuts",
-          "done": false
-        },
-        {
-          "id": 4,
-          "name": "oioi",
-          "done": true
         }
       ]
     }
