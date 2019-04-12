@@ -1,5 +1,4 @@
 import TodoController from '../controllers/TodoController.js';
-import Todo from './Todo.js';
 
 class TodoForm {
   constructor() {
