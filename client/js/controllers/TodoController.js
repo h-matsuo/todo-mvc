@@ -11,16 +11,20 @@ const TodoController = {
     view.mount();
   },
 
+  async update(id, done) {
+    await TodoCollection.update(id, done);
+  },
+
   async render() {
     const todos = await TodoCollection.read();
     this.views = todos.map(todo => {
       const view = new Todo({ ...todo });
       view.mount();
-      // return view;
+      return view;
     });
 
     const form = new TodoForm();
     form.mount();
-  },
+  }
 };
 export default TodoController;

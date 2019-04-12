@@ -4,15 +4,15 @@ class TodoModel {
     this.name = name;
     this.done = done;
   }
+
+  update(name, done) {
+    this.name = name;
+    this.done = done;
+  }
 }
 
 const TodoCollection = {
-  todos: [
-    {
-      "name": "sample",
-      "done": false
-    }
-  ],
+  todos: [],
 
   // Rails で言うところの Model.all
   async read() {
@@ -32,8 +32,22 @@ const TodoCollection = {
       body: JSON.stringify({ name })
     }).then(res => res.json());
     const newTodo = new TodoModel({ ...resp });
+    // const newTodo = new TodoModel({ id: resp.id, name: resp.name });
     this.todos.push(newTodo);
     return newTodo;
+  },
+
+  async update(id, done) {
+    const target = this.todos.find(todo => todo.id === id);
+    const resp = await fetch(`/todos/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify({ name: target.name, done })
+    }).then(res => res.json());
+    target.update(resp.name, resp.done);
+    // return target;
   }
 }
 

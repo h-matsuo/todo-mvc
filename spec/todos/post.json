@@ -1,6 +1,6 @@
 {
   "request": {
-    "path": "/todos/",
+    "path": "/todos",
     "method": "POST",
     "body": {
       "name": "{:name}"

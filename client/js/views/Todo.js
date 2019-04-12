@@ -1,3 +1,5 @@
+import TodoController from "../controllers/TodoController.js";
+
 class Todo {
   constructor({ id, name, done }) {
     this.parent = document.querySelector('.todos');
@@ -10,6 +12,7 @@ class Todo {
           type="checkbox"
           class="todo-toggle"
           value="checked"
+          ${done ? 'checked' : ''}
         />
         <span class="todo-toggle__checkmark"></span>
       </label>
@@ -20,6 +23,11 @@ class Todo {
 
   mount() {
     this.parent.appendChild(this.element);
+    this.element.addEventListener('change', event => {
+      const id = parseInt(event.target.getAttribute('data-todo-id'), 10);
+      const done = event.target.checked;
+      TodoController.update(id, done);
+    });
   }
 }
 
