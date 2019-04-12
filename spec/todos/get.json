@@ -6,18 +6,36 @@
   "response": {
     "status": 200,
     "body": {
-      "items": [
+      "todos": [
         {
-          "name": "sample1",
+          "id": "{:todos.0.id}",
+          "name": "{:todos.0.name}",
+          "done": "{:todos.0.done}"
+        },
+        "{:todos.1-last}"
+      ]
+    },
+    "values": {
+      "todos": [
+        {
+          "id": 1,
+          "name": "buy milk",
+          "done": true
+        },
+        {
+          "id": 2,
+          "name": "hogehogehoge",
           "done": false
         },
         {
-          "name": "sample2",
+          "id": 3,
+          "name": "buy peanuts",
           "done": false
         },
         {
-          "name": "sample3",
-          "done": false
+          "id": 4,
+          "name": "oioi",
+          "done": true
         }
       ]
     }
