@@ -48,6 +48,14 @@ const TodoCollection = {
     }).then(res => res.json());
     target.update(resp.name, resp.done);
     // return target;
+  },
+
+  async delete(id) {
+    await fetch(`/todos/${id}`, {
+      method: 'DELETE'
+    });
+    const targetIndex = this.todos.findIndex(todo => todo.id === id);
+    this.todos.splice(targetIndex, 1);
   }
 }
 

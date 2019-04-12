@@ -28,6 +28,15 @@ class Todo {
       const done = event.target.checked;
       TodoController.update(id, done);
     });
+    this.element.querySelector('.todo-remove-button').addEventListener('click', event => {
+      const id = parseInt(event.target.getAttribute('data-todo-id'), 10);
+      TodoController.delete(id);
+      this.unmount();
+    });
+  }
+
+  unmount() {
+    this.parent.removeChild(this.element);
   }
 }
 
